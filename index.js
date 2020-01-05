@@ -13,6 +13,8 @@ mongoose.connect(
     () => console.log("Connected to db")
 );
 
+app.use(express.json());
+
 //Route Middlewares
 app.use("/api/user", authRoute);
 
