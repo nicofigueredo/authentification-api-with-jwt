@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const User = require("../model/User");
-const { registerValidation } = require("../validation");
+const { registerValidation, loginValidation } = require("../validation");
 const bcrypt = require("bcryptjs");
 
 router.post("/register", async (req, res) => {
@@ -14,7 +14,6 @@ router.post("/register", async (req, res) => {
     //Password hashing
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
 
     //Create a new user
     const user = new User({
@@ -30,10 +29,29 @@ router.post("/register", async (req, res) => {
 
     try {
         const savedUser = await user.save();
-        res.send({ _id: savedUser._id });
+        res.send({ user: user._id });
     } catch (err) {
         res.status(400).send(err);
     }
+});
+
+router.post("/login", async (req, res) => {
+    const { error } = loginValidation(req.body);
+    if (error)
+        return res
+            .status(400)
+            .send({ msg: error.details[0].message.replace(/\"/g, "") });
+
+    //Check if user exists
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) return res.status(400).send({ msg: "Email isn't registered" });
+
+    //Check if password is correct
+    const validPass = await bcrypt.compare(req.body.password, user.password);
+    if (!validPass) return res.status(400).send({msg: "Invalid password"});
+
+    res.send({msg: "Logged in Ok"});
+
 });
 
 module.exports = router;
