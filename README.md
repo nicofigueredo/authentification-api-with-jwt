@@ -32,8 +32,6 @@ Another way to get the project is to download a zip copy from the [master branch
 $ wget https://github.com/nicofigueredo/authentification-api-with-jwt/archive/master.zip -O authentification-api-with-jwt.zip; unzip authentification-api-with-jwt.zip; rm authentification-api-with-jwt.zip
 ```
 
-Don't forget to rename **authentification-api-with-jwt** after your project name.
-
 ## Installing 🔧
 
 Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop your application.
