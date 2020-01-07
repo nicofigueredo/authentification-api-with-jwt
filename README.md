@@ -29,7 +29,7 @@ This will clone the latest version of the project repository to a **authentifica
 Another way to get the project is to download a zip copy from the [master branch on GitHub](https://github.com/nicofigueredo/authentification-api-with-jwt/archive/master.zip). You can also do this using the `wget` command:
 
 ```bash
-$ wget https://github.com/nicofigueredo/authentification-api-with-jwt/archive/master.zip -O authentification-api-with-jwt.zip; unzip authentification-api-with-jwt.zip; rm authentification-api-with-jwt.zip
+$ wget https://github.com/nicofigueredo/authentification-api-with-jwt/archive/master.zip -O authentification-api-with-jwt.zip && unzip authentification-api-with-jwt.zip && rm authentification-api-with-jwt.zip
 ```
 
 ## Installing 🔧
