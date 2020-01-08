@@ -59,6 +59,42 @@ $ npm start
 Your application should run on port 3000, so in your browser just go to [http://localhost:3000](http://localhost:3000)
 That's it! Your application should be running.
 
+## Usage :muscle:
+
+### [POST] - /api/user/register
+To register a new user you need to specify a name, an email and a password.
+
+Example:
+```bash
+$ curl -H'content-type:application/json' -XPOST 'http://localhost:3000/api/user/register' -d \
+'{
+    "name": "Nik",
+    "email": "nico@email.com",
+    "password": "123456"
+}'
+
+```
+### [POST] - /api/user/login
+To login with a registered user you need to specify the registered email and a password. The response will be a the json web token that you need to use to access the private resources for that user.
+
+Example:
+```bash
+$ curl -H'content-type:application/json' -XPOST 'http://localhost:3000/api/user/login' -d \
+'{
+    "email": "nico@email.com",
+    "password": "123456"
+}'
+
+```
+
+### [GET] - /api/posts
+To access the user's private posts you need to specify the json web token in a header with 'auth-token' as key.
+
+Example:
+```bash
+$ curl -H'content-type:application/json' -H'auth-token:<Your token goes here>' -XGET 'http://localhost:3000/api/posts' 
+```
+
 
 ## Built with 🛠️
 
